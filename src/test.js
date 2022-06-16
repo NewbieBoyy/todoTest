@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 const TodoForm = () => {
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
-  const [edit, setEdit] = useState(false)
+
   const handleChange = (e) => {
     setInput(e.target.value);
   };
@@ -12,7 +12,7 @@ const TodoForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const todo = {
+    const todo = {                  
       id: uuidv4(),
       title: input,
     };
@@ -29,19 +29,22 @@ const TodoForm = () => {
     setTodos(newTodos);
   };
 
-  const onUpdateNote = (updatedNote) => {
-    setEdit(true)
-    setInput(updatedNote)
-    const updatedNotesArr = todos.map((todo) => {
-      if (todo.id === updatedNote.id) {
-        return {updatedNote};
-      }
-
-      return {todo};
-    });
-
-    setInput({updatedNotesArr});
+  const editTodo = (oldTodo) => {
+    // oldTodo = {
+    //   id: "",
+    //   title: "",
+    // };
+    // const updatedTodos = [{ id: "1", title: "Elie" }];
+    // todos.filter((todo) => {
+    //   console.log("Todo Id", todo.id);
+    //   // return todo;
+    // });
+    // setState({ todos });
   };
+
+  // bas tekbes 3al edit button
+  // add the todo title to the input box
+  // Change the add todo button to confirm button
 
   return (
     <div>
@@ -67,7 +70,7 @@ const TodoForm = () => {
 
             <button onClick={() => removeTodo(todo.id)}> remove </button>
 
-            <button onClick={() => onUpdateNote({todo})}> Edit </button>
+            <button onClick={() => editTodo(todo)}> Edit </button>
           </div>
         ))}
       </div>
